@@ -36,4 +36,4 @@ SELECT
 FROM position_data pos
 INNER JOIN price_data pr
     ON pos.COMPANY_ID = pr.COMPANY_ID 
-    AND pos.DATE = pr.DATE
+    AND pos.DATE = pr.DATE;
