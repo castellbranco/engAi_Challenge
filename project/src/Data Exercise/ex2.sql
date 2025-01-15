@@ -28,7 +28,8 @@ last_year_data AS (
     FROM 
         daily_position
     WHERE 
-        DATE >= DATEADD(YEAR, -1, CURRENT_DATE())  -- Adjusting for the last year
+        DATE >= DATEADD(YEAR, -1, (SELECT MAX(DATE) FROM source.position))
+-- Adjusting for the last year
 )
 
 -- Step 3: Calculate Average Position in USD for Each Company
@@ -49,7 +50,12 @@ last_year_data AS (
 
 SELECT 
     COMPANY_ID,
-    AVERAGE_POSITION_USD
+    AVERAGE_POSITION_USD,
+            -- Control columns
+    CURRENT_TIMESTAMP()                     AS CTRL_INSERT_DATE,   -- Timestamp when query runs
+    'TASK_001'                              AS CTRL_TASK_ID,        -- Example task or batch identifier
+    'EXTERNAL_SYSTEM'                       AS CTRL_SOURCE_SYSTEM,  -- Example source system
+    CURRENT_DATE()                          AS CTRL_PROCESS_DATE,   -- Logical date of processing
 FROM 
     (
         SELECT 
@@ -59,6 +65,7 @@ FROM
         FROM 
             average_position
     ) ranked_companies
+
 WHERE 
     POSITION_RANK = 1  -- Selecting the top 25%
 ORDER BY 

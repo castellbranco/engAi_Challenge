@@ -23,11 +23,11 @@ WITH daily_position AS (
 sector_position AS (
     SELECT 
         dp.DATE,
-        c.SECTOR_NAME,
+        COALESCE(c.SECTOR_NAME, 'UNKNOWN') AS SECTOR_NAME,
         dp.DAILY_POSITION_USD
     FROM 
         daily_position dp
-    INNER JOIN 
+    LEFT JOIN 
         source.company c
     ON 
         dp.COMPANY_ID = c.ID  -- Assuming ID is the company identifier in the company table
@@ -39,7 +39,13 @@ sector_position AS (
 SELECT 
     DATE,
     SECTOR_NAME,
-    SUM(DAILY_POSITION_USD) AS TOTAL_SECTOR_POSITION_USD  -- Calculate total position in USD for each sector
+    SUM(DAILY_POSITION_USD) AS TOTAL_SECTOR_POSITION_USD,  -- Calculate total position in USD for each sector
+        -- Control columns
+    CURRENT_TIMESTAMP()                     AS CTRL_INSERT_DATE,   -- Timestamp when query runs
+    'TASK_001'                              AS CTRL_TASK_ID,        -- Example task or batch identifier
+    'EXTERNAL_SYSTEM'                       AS CTRL_SOURCE_SYSTEM,  -- Example source system
+    CURRENT_DATE()                          AS CTRL_PROCESS_DATE,   -- Logical date of processing
+    
 FROM 
     sector_position
 GROUP BY 
