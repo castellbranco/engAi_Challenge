@@ -2,22 +2,30 @@
 engAi_Challenge/
 │
 ├── project/
-│   ├── Backend/
-│   │   ├── snowflake_connection.py        # Contains functions to connect to Snowflake
-│   │   ├── data_queries.py                # Contains functions for querying data from Snowflake
-│   │   └── run_query.py                   # Contains functions to run queries and visualize data
+│   ├── app.py                             # Main Streamlit application file
+│   ├── sql_script.sql                     # SQL script with data queries
 │   │
-│   ├── Query Visualization/
-│   │   ├── run_query_ex1.py               # Script to visualize total portfolio value over time
-│   │   ├── run_query_ex2.py               # Script to visualize top companies by average position
-│   │   └── run_query_ex3.py               # Script to visualize sector positions over time
+│   ├── src/
+│   │   ├── Backend/
+│   │   │   ├── snowflake_connection.py    # Contains functions to connect to Snowflake
+│   │   │   └── data_queries.py            # Contains functions for querying data from Snowflake
+│   │   │
+│   │   ├── Data Exercise/
+│   │   │   ├── ex1.sql                    # SQL script for Exercise 1
+│   │   │   ├── ex2.sql                    # SQL script for Exercise 2
+│   │   │   └── ex3.sql                    # SQL script for Exercise 3
+│   │   │
+│   │   └── Query Visualization/
+│   │       ├── run_query_ex1.py           # Script to visualize total portfolio value over time
+│   │       ├── run_query_ex2.py           # Script to visualize top companies by average position
+│   │       └── run_query_ex3.py           # Script to visualize sector positions over time
 │   │
-│   └── app.py                             # Main Streamlit application file
+│   └── .env                               # Environment variables for Snowflake connection
 │
-├── .env                                   # Environment variables for Snowflake connection
 ├── .gitignore                             # Specifies files and directories to ignore in Git
 ├── requirements.txt                       # List of Python package dependencies
 └── README.md                              # Documentation for the project
+
 
 
 # BI Dashboard
