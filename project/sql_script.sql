@@ -30,9 +30,7 @@ SELECT
     CURRENT_TIMESTAMP()                     AS CTRL_INSERT_DATE,   -- Timestamp when query runs
     'TASK_001'                              AS CTRL_TASK_ID,        -- Example task or batch identifier
     'EXTERNAL_SYSTEM'                       AS CTRL_SOURCE_SYSTEM,  -- Example source system
-    CURRENT_DATE()                          AS CTRL_PROCESS_DATE,   -- Logical date of processing
-    
-    
+    CURRENT_DATE()                          AS CTRL_PROCESS_DATE   -- Logical date of processing
 FROM position_data pos
 INNER JOIN price_data pr
     ON pos.COMPANY_ID = pr.COMPANY_ID 
@@ -93,11 +91,11 @@ last_year_data AS (
 SELECT 
     COMPANY_ID,
     AVERAGE_POSITION_USD,
-            -- Control columns
+    -- Control columns
     CURRENT_TIMESTAMP()                     AS CTRL_INSERT_DATE,   -- Timestamp when query runs
     'TASK_001'                              AS CTRL_TASK_ID,        -- Example task or batch identifier
     'EXTERNAL_SYSTEM'                       AS CTRL_SOURCE_SYSTEM,  -- Example source system
-    CURRENT_DATE()                          AS CTRL_PROCESS_DATE,   -- Logical date of processing
+    CURRENT_DATE()                          AS CTRL_PROCESS_DATE   -- Logical date of processing
 FROM 
     (
         SELECT 
@@ -107,7 +105,6 @@ FROM
         FROM 
             average_position
     ) ranked_companies
-
 WHERE 
     POSITION_RANK = 1  -- Selecting the top 25%
 ORDER BY 
@@ -157,12 +154,11 @@ SELECT
     DATE,
     SECTOR_NAME,
     SUM(DAILY_POSITION_USD) AS TOTAL_SECTOR_POSITION_USD,  -- Calculate total position in USD for each sector
-        -- Control columns
+    -- Control columns  
     CURRENT_TIMESTAMP()                     AS CTRL_INSERT_DATE,   -- Timestamp when query runs
     'TASK_001'                              AS CTRL_TASK_ID,        -- Example task or batch identifier
     'EXTERNAL_SYSTEM'                       AS CTRL_SOURCE_SYSTEM,  -- Example source system
-    CURRENT_DATE()                          AS CTRL_PROCESS_DATE,   -- Logical date of processing
-    
+    CURRENT_DATE()                          AS CTRL_PROCESS_DATE   -- Logical date of processing
 FROM 
     sector_position
 GROUP BY 

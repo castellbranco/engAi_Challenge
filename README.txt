@@ -117,9 +117,6 @@ You can export the following data from the dashboard:
 
 Simply select the desired data from the dropdown menu and click the export button.
 
-## Contributing
-
-Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
