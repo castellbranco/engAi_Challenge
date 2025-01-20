@@ -1,7 +1,7 @@
 # Project Structure
 engAi_Challenge/
 │
-├── src/
+├── project/
 │   ├── Backend/
 │   │   ├── snowflake_connection.py        # Contains functions to connect to Snowflake
 │   │   ├── data_queries.py                # Contains functions for querying data from Snowflake
@@ -23,15 +23,6 @@ engAi_Challenge/
 # BI Dashboard
 
 This project is a Business Intelligence (BI) Dashboard that connects to a Snowflake database to visualize company and sector data. It uses Streamlit for the web interface and Plotly for interactive visualizations.
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Exporting Data](#exporting-data)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Prerequisites
 
